@@ -4,7 +4,7 @@ import { ReactComponent as LogoIcon } from "../assets/svg/Vector.svg";
 const Navbar = () => {
   return (
     <>
-      <div className="p-10 bg-primary text-white">
+      <div className="p-10 bg-Dark text-white">
         <div className="flex justify-between">
           <div className="flex">
             <div className="flex gap-4 ml-10 ">

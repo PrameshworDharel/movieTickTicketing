@@ -8,7 +8,7 @@ import { ReactComponent as Line } from "../assets/svg/Line 3.svg";
 import { ReactComponent as Vector } from "../assets/svg/vector11.svg";
 import { ReactComponent as Location } from "../assets/svg/Vector12.svg";
 
-const CardArray = [
+export const CardArray = [
   {
     id: 1,
     image: images.Rectangle1,
@@ -134,12 +134,12 @@ const ScreenTwo = () => {
                   </div>
                 </div>
               </div>
-              <Link to="/chechout/screen3">
-              <div className="mt-5">
-                <button className="bg-Red p-4 w-[100%] rounded-md">
-                  Check out for {totalAmount}
-                </button>
-              </div>
+              <Link to={`/chechout/${eventId}/${ticketQuantity}/${totalAmount}`}>
+                <div className="mt-5">
+                  <button className="bg-Red p-4 w-[100%] rounded-md">
+                    Check out for {totalAmount}
+                  </button>
+                </div>
               </Link>
             </div>
           </div>

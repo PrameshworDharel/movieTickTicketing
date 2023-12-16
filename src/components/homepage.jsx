@@ -37,7 +37,7 @@ const Homepage = () => {
         <Link key={event.id} to={`/screen2/${event.id}`}>
           <div className="relative p-10">
             <img src={event.image} alt={event.title} />
-            <button className="absolute top-14 right-16 bg-shadow text-white py-1 px-3 rounded shadow-lg">
+            <button className="absolute top-14 right-16 bg-Light text-white py-1 px-3 rounded shadow-lg">
               {event.buttonText}
             </button>
             <h2 className="mt-3 overflow-hidden overflow-ellipsis max-w-[250px]">

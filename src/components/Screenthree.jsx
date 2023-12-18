@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { ReactComponent as Line44 } from "../assets/svg/Line 44.svg";
 import Navbar from "./navbar";
 import { ReactComponent as OvalIcon } from "../assets/svg/Oval.svg";
@@ -7,6 +7,7 @@ import { CardArray } from "./Screentwo";
 import { useParams } from "react-router-dom";
 const ScreenThree = () => {
   const list = CardArray;
+  const navigate = useNavigate();
 
   const { id, ticketQuantity, totalAmount } = useParams();
 
@@ -58,6 +59,9 @@ const ScreenThree = () => {
     e.preventDefault();
 
     if (validateForm()) {
+      navigate(
+        `/invoice/${id}/${ticketQuantity}/${totalAmount}/${formData.fullName}/${formData.address}/${formData.city}/${formData.country}`
+      );
     }
   };
 
@@ -248,18 +252,18 @@ const ScreenThree = () => {
                   </div>
                 </div>
                 <Line44 className="bg-primary w-[350px] mt-7" />
-                <Link
+                {/* <Link
                   to={`/invoice/${id}/${ticketQuantity}/${totalAmount}/${formData.fullName}/${formData.address}/${formData.city}/${formData.country}`}
-                >
-                  <div className="mt-5">
-                    <button
-                      className="bg-Red p-4 w-[100%] rounded-md"
-                      type="submit"
-                    >
-                      Confirm & pay
-                    </button>
-                  </div>
-                </Link>
+                > */}
+                <div className="mt-5">
+                  <button
+                    className="bg-Red p-4 w-[100%] rounded-md"
+                    type="submit"
+                  >
+                    Confirm & pay
+                  </button>
+                </div>
+                {/* </Link> */}
               </div>
             </div>
           </form>

@@ -40,12 +40,10 @@ const ScreenTwo = () => {
 
   const selectedCard = CardArray.find((card) => String(card.id) === eventId);
 
-  // State to manage ticket quantity
   const [ticketQuantity, setTicketQuantity] = useState(1);
   const ticketPrice = 500.0;
 
   const updateQuantity = (change) => {
-    // Update quantity
     const newQuantity = Math.min(Math.max(1, ticketQuantity + change), 10);
     setTicketQuantity(newQuantity);
   };
@@ -134,7 +132,9 @@ const ScreenTwo = () => {
                   </div>
                 </div>
               </div>
-              <Link to={`/chechout/${eventId}/${ticketQuantity}/${totalAmount}`}>
+              <Link
+                to={`/chechout/${eventId}/${ticketQuantity}/${totalAmount}`}
+              >
                 <div className="mt-5">
                   <button className="bg-Red p-4 w-[100%] rounded-md">
                     Check out for {totalAmount}

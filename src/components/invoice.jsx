@@ -8,7 +8,8 @@ import * as images from "../assets/images";
 
 const Invoice = () => {
   const list = CardArray;
-  const { id, ticketQuantity, totalAmount } = useParams();
+  const { id, ticketQuantity, totalAmount, fullName, address,city, country } =
+    useParams();
   const selectedCard = CardArray.find((card) => String(card.id) === id);
   const generateInvoiceId = () => {
     const randomNumber = Math.floor(Math.random() * 1000000);
@@ -37,7 +38,6 @@ const Invoice = () => {
 
   const vatRate = 0.13;
 
-  // Create an array of line and ticket sections alternating
   const TicketSections = [];
   for (let i = 0; i < parseInt(ticketQuantity, 10); i++) {
     TicketSections.push(
@@ -86,14 +86,14 @@ const Invoice = () => {
           <h1 className="font-bold ">Invoice</h1>
           <div className="mt-10">
             <div className="flex justify-between ">
-              <h1>Invoice to</h1>
+              <h1>Invoice to {fullName}</h1>
               <h1>Invoice ID :{invoiceId}</h1>
             </div>
             <div className="flex justify-between mt-7">
-              <h1>Location</h1>
+              <h1>{address}</h1>
               <h1>Order Date :{formattedDate}</h1>
             </div>
-            <h1 className="mt-7">Location</h1>
+            <h1 className="mt-7">{city},{country}</h1>
           </div>
           <div className="mt-10 bg-shadow shadow-2xl p-5  border ">
             <table>

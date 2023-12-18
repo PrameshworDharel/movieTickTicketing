@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { ReactComponent as Line44 } from "../assets/svg/Line 44.svg";
 import Navbar from "./navbar";
@@ -12,6 +12,62 @@ const ScreenThree = () => {
 
   const selectedCard = CardArray.find((card) => String(card.id) === id);
   const vatRate = 0.13;
+  const [formData, setFormData] = useState({
+    fullName: "",
+    email: "",
+    address: "",
+    country: "",
+    state: "",
+    city: "",
+    zipCode: "",
+  });
+
+  const [formErrors, setFormErrors] = useState({});
+
+  const validateForm = () => {
+    const errors = {};
+
+    if (!formData.fullName.trim()) {
+      errors.fullName = "Full Name is required";
+    }
+    if (!formData.email.trim()) {
+      errors.email = "Email is required";
+    }
+    if (!formData.address.trim()) {
+      errors.address = "Address is required";
+    }
+
+    if (!formData.country.trim()) {
+      errors.country = "Country is required";
+    }
+    if (!formData.city.trim()) {
+      errors.city = "City is required";
+    }
+    if (!formData.state.trim()) {
+      errors.state = "State is required";
+    }
+    if (!formData.zipCode.trim()) {
+      errors.zipCode = "Zopcode is required";
+    }
+
+    setFormErrors(errors);
+    return Object.keys(errors).length === 0;
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    if (validateForm()) {
+    }
+  };
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData((prevData) => ({
+      ...prevData,
+      [name]: value,
+    }));
+  };
 
   return (
     <>
@@ -27,18 +83,23 @@ const ScreenThree = () => {
         <div className="bg-primary p-20">
           <h1 className="font-bold text-xl">Order Confirmation</h1>
           <Line44 className="mt-10" />
-          <div className="flex gap-10">
-            <form className="bg-Dark p-10 mt-20 rounded-md">
+          <form className="flex gap-10" onSubmit={handleSubmit}>
+            <div className="bg-Dark p-10 mt-20 rounded-md">
               <h1 className="font-bold text-xl">Information</h1>
               <div className="mt-10">
                 <label htmlFor="fullName">Full Name</label>
                 <div>
                   <input
-                    className="w-full mt-2 h-10  bg-primary shadow-2xl rounded-md"
+                    className="w-full mt-2 h-10  bg-primary shadow-2xl rounded-md "
                     type="text"
                     id="fullName"
                     name="fullName"
+                    value={formData.fullName}
+                    onChange={handleChange}
                   />
+                  {formErrors.fullName && (
+                    <span className="text-red-500">{formErrors.fullName}</span>
+                  )}
                 </div>
               </div>
               <div className="flex">
@@ -50,7 +111,12 @@ const ScreenThree = () => {
                       type="email"
                       id="email"
                       name="email"
+                      value={formData.email}
+                      onChange={handleChange}
                     />
+                    {formErrors.email && (
+                      <span className="text-red-500">{formErrors.email}</span>
+                    )}
                   </div>
                 </div>
                 <div className="mt-5 ml-20">
@@ -61,7 +127,12 @@ const ScreenThree = () => {
                       type="text"
                       id="address"
                       name="address"
+                      value={formData.address}
+                      onChange={handleChange}
                     />
+                    {formErrors.address && (
+                      <span className="text-red-500">{formErrors.address}</span>
+                    )}
                   </div>
                 </div>
               </div>
@@ -74,7 +145,12 @@ const ScreenThree = () => {
                       type="text"
                       id="country"
                       name="country"
+                      value={formData.country}
+                      onChange={handleChange}
                     />
+                    {formErrors.country && (
+                      <span className="text-red-500">{formErrors.country}</span>
+                    )}
                   </div>
                 </div>
                 <div className=" mt-5 ml-20">
@@ -85,7 +161,12 @@ const ScreenThree = () => {
                       type="text"
                       id="state"
                       name="state"
+                      value={formData.state}
+                      onChange={handleChange}
                     />
+                    {formErrors.state && (
+                      <span className="text-red-500">{formErrors.state}</span>
+                    )}
                   </div>
                 </div>
               </div>
@@ -98,7 +179,12 @@ const ScreenThree = () => {
                       type="text"
                       id="city"
                       name="city"
+                      value={formData.city}
+                      onChange={handleChange}
                     />
+                    {formErrors.city && (
+                      <span className="text-red-500">{formErrors.city}</span>
+                    )}
                   </div>
                 </div>
                 <div className="mt-5 ml-20">
@@ -109,11 +195,16 @@ const ScreenThree = () => {
                       type="text"
                       id="zipCode"
                       name="zipCode"
+                      value={formData.zipCode}
+                      onChange={handleChange}
                     />
+                    {formErrors.zipCode && (
+                      <span className="text-red-500">{formErrors.zipCode}</span>
+                    )}
                   </div>
                 </div>
               </div>
-            </form>
+            </div>
             <div className="bg-Dark mt-20 rounded-md">
               <div className="p-10 ">
                 <h1 className="font-bold text-3xl">Checkout Summary</h1>
@@ -157,16 +248,21 @@ const ScreenThree = () => {
                   </div>
                 </div>
                 <Line44 className="bg-primary w-[350px] mt-7" />
-                <Link to={`/invoice/${id}/${ticketQuantity}/${totalAmount}`}>
+                <Link
+                  to={`/invoice/${id}/${ticketQuantity}/${totalAmount}/${formData.fullName}/${formData.address}/${formData.city}/${formData.country}`}
+                >
                   <div className="mt-5">
-                    <button className="bg-Red p-4 w-[100%] rounded-md">
+                    <button
+                      className="bg-Red p-4 w-[100%] rounded-md"
+                      type="submit"
+                    >
                       Confirm & pay
                     </button>
                   </div>
                 </Link>
               </div>
             </div>
-          </div>
+          </form>
         </div>
       </div>
     </>

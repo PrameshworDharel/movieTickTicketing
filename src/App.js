@@ -20,7 +20,7 @@ function App() {
           element={<ScreenThree />}
         />
         <Route
-          path="/invoice/:id/:ticketQuantity/:totalAmount"
+          path="/invoice/:id/:ticketQuantity/:totalAmount/:fullName/:address/:city/:country"
           element={<Invoice />}
         />
       </Routes>

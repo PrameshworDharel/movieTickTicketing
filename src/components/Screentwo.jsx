@@ -2,38 +2,13 @@ import React, { useState } from "react";
 import { useParams } from "react-router-dom";
 import { Link } from "react-router-dom";
 import Navbar from "./navbar";
-import * as images from "../assets/images";
+import { CardArray } from "./homepage";
 import { ReactComponent as OvalIcon } from "../assets/svg/Oval.svg";
 import { ReactComponent as Line } from "../assets/svg/Line 3.svg";
 import { ReactComponent as Vector } from "../assets/svg/vector11.svg";
 import { ReactComponent as Location } from "../assets/svg/Vector12.svg";
 
-export const CardArray = [
-  {
-    id: 1,
-    image: images.Rectangle1,
-    title: "Golden Night with Laure & Dong",
-    date: "August 28, 2023",
-    location: "Kathmandu, Nepal",
-    buttonText: "Concert",
-  },
-  {
-    id: 2,
-    image: images.Rectangle2,
-    title: "The Weeknd Experience: Live with The Weeknd",
-    date: "January 21, 2023",
-    location: "Kathmandu, Nepal",
-    buttonText: "Concert",
-  },
-  {
-    id: 3,
-    image: images.Rectangle3,
-    title: "Antman and the wasp Quantumania",
-    date: "August 28, 2023",
-    location: "Kathmandu, Nepal",
-    buttonText: "Movies",
-  },
-];
+const list = CardArray;
 
 const ScreenTwo = () => {
   const { eventId } = useParams();

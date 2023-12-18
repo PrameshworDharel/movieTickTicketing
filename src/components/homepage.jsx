@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import * as images from "../assets/images";
 import { ReactComponent as OvalIcon } from "../assets/svg/Oval.svg";
 
-const CardArray = [
+export const CardArray = [
   {
     id: 1,
     image: images.Rectangle1,

@@ -2,21 +2,23 @@ import React from "react";
 import { ReactComponent as LogoIcon } from "../assets/svg/Vector.svg";
 import { ReactComponent as Vector14 } from "../assets/svg/Vector14.svg";
 import { ReactComponent as Line15 } from "../assets/svg/Vector15.svg";
-import { CardArray } from "./Screentwo";
+import { CardArray } from "./homepage";
 import { useParams } from "react-router-dom";
 import * as images from "../assets/images";
+import { v4 as uuidv4 } from "uuid";
 
 const Invoice = () => {
+  const uid = uuidv4();
   const list = CardArray;
   const { id, ticketQuantity, totalAmount, fullName, address,city, country } =
     useParams();
   const selectedCard = CardArray.find((card) => String(card.id) === id);
-  const generateInvoiceId = () => {
-    const randomNumber = Math.floor(Math.random() * 1000000);
-    const paddedNumber = String(randomNumber).padStart(6, "0");
-    return `YCCURW-${paddedNumber}`;
-  };
-  const invoiceId = generateInvoiceId();
+  // const generateInvoiceId = () => {
+  //   const randomNumber = Math.floor(Math.random() * 1000000);
+  //   const paddedNumber = String(randomNumber).padStart(6, "0");
+  //   return `YCCURW-${paddedNumber}`;
+  // // };
+  // const invoiceId = generateInvoiceId();
 
   const currentDate = new Date();
   const formattedDate = currentDate.toLocaleDateString("en-US", {
@@ -87,7 +89,7 @@ const Invoice = () => {
           <div className="mt-10">
             <div className="flex justify-between ">
               <h1>Invoice to {fullName}</h1>
-              <h1>Invoice ID :{invoiceId}</h1>
+              <h1>Invoice ID :{uid}</h1>
             </div>
             <div className="flex justify-between mt-7">
               <h1>{address}</h1>

@@ -5,7 +5,7 @@ const Navbar = () => {
   return (
     <>
       <div className="p-10 bg-Dark text-white">
-        <div className="flex justify-between">
+        <nav className="flex justify-between">
           <div className="flex">
             <div className="flex gap-4 ml-10 ">
               <LogoIcon />
@@ -24,7 +24,7 @@ const Navbar = () => {
             <button className="">Login</button>
             <button className="bg-Brand px-2 py-1">Register</button>
           </div>
-        </div>
+        </nav>
       </div>
     </>
   );

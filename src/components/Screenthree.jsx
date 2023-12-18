@@ -3,11 +3,13 @@ import { useNavigate } from "react-router-dom";
 import { ReactComponent as Line44 } from "../assets/svg/Line 44.svg";
 import Navbar from "./navbar";
 import { ReactComponent as OvalIcon } from "../assets/svg/Oval.svg";
-import { CardArray } from "./Screentwo";
+import { CardArray } from "./homepage";
 import { useParams } from "react-router-dom";
+
 const ScreenThree = () => {
   const list = CardArray;
   const navigate = useNavigate();
+  
 
   const { id, ticketQuantity, totalAmount } = useParams();
 
@@ -48,7 +50,7 @@ const ScreenThree = () => {
       errors.state = "State is required";
     }
     if (!formData.zipCode.trim()) {
-      errors.zipCode = "Zopcode is required";
+      errors.zipCode = "Zipcode is required";
     }
 
     setFormErrors(errors);

@@ -1,8 +1,8 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 import * as images from "../assets/images";
 import { ReactComponent as OvalIcon } from "../assets/svg/Oval.svg";
-
+// const [event, setEvent] = useState(null);
 export const CardArray = [
   {
     id: 1,
@@ -31,6 +31,21 @@ export const CardArray = [
 ];
 
 const Homepage = () => {
+  useEffect(() => {
+    fetchMoviesData();
+  }, []);
+  const fetchMoviesData = async () => {
+    try {
+      const response = await fetch(
+        " http://www.omdbapi.com/?i=tt3896198&s=&apikey=b41a788a&type=movie"
+      );
+      const data = await response.json();
+      // setEvent(data);
+      console.log(data);
+    } catch (error) {
+      console.error("Error fetching Movies data:", error);
+    }
+  };
   return (
     <div className="bg-primary flex p-10 text-white gap-28 relative">
       {CardArray.map((event) => (
@@ -40,7 +55,7 @@ const Homepage = () => {
             <button className="absolute top-14 right-16 bg-Light text-white py-1 px-3 rounded shadow-lg">
               {event.buttonText}
             </button>
-            <h2 className="mt-3 overflow-hidden overflow-ellipsis max-w-[250px]">
+            <h2 className="mt-3 overflow-hidden overflow-ellipsis max-w-[260px]">
               {event.title}
             </h2>
             <div className="flex gap-2 mt-2">

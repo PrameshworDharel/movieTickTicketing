@@ -1,14 +1,10 @@
 import React from "react";
-import {
-  BrowserRouter as Router,
-  Routes,
-  Route,
-  Switch,
-} from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Screen1 from "../src/components";
 import ScreenTwo from "./components/Screentwo";
 import ScreenThree from "./components/Screenthree";
 import Invoice from "./components/invoice";
+import Movies from "./components/concert/Concert";
 function App() {
   return (
     <Router>
@@ -23,6 +19,7 @@ function App() {
           path="/invoice/:id/:ticketQuantity/:totalAmount/:fullName/:address/:city/:country"
           element={<Invoice />}
         />
+        <Route path="/concerts" element={<Movies />} />
       </Routes>
     </Router>
   );

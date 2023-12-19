@@ -9,7 +9,6 @@ import { useParams } from "react-router-dom";
 const ScreenThree = () => {
   const list = CardArray;
   const navigate = useNavigate();
-  
 
   const { id, ticketQuantity, totalAmount } = useParams();
 
@@ -104,7 +103,7 @@ const ScreenThree = () => {
                     onChange={handleChange}
                   />
                   {formErrors.fullName && (
-                    <span className="text-red-500">{formErrors.fullName}</span>
+                    <span className="text-Red">{formErrors.fullName}</span>
                   )}
                 </div>
               </div>
@@ -121,7 +120,7 @@ const ScreenThree = () => {
                       onChange={handleChange}
                     />
                     {formErrors.email && (
-                      <span className="text-red-500">{formErrors.email}</span>
+                      <span className="text-Red">{formErrors.email}</span>
                     )}
                   </div>
                 </div>
@@ -137,7 +136,7 @@ const ScreenThree = () => {
                       onChange={handleChange}
                     />
                     {formErrors.address && (
-                      <span className="text-red-500">{formErrors.address}</span>
+                      <span className="text-Red">{formErrors.address}</span>
                     )}
                   </div>
                 </div>
@@ -155,7 +154,7 @@ const ScreenThree = () => {
                       onChange={handleChange}
                     />
                     {formErrors.country && (
-                      <span className="text-red-500">{formErrors.country}</span>
+                      <span className="text-Red">{formErrors.country}</span>
                     )}
                   </div>
                 </div>
@@ -171,7 +170,7 @@ const ScreenThree = () => {
                       onChange={handleChange}
                     />
                     {formErrors.state && (
-                      <span className="text-red-500">{formErrors.state}</span>
+                      <span className="text-Red">{formErrors.state}</span>
                     )}
                   </div>
                 </div>
@@ -189,7 +188,7 @@ const ScreenThree = () => {
                       onChange={handleChange}
                     />
                     {formErrors.city && (
-                      <span className="text-red-500">{formErrors.city}</span>
+                      <span className="text-Red">{formErrors.city}</span>
                     )}
                   </div>
                 </div>
@@ -205,7 +204,7 @@ const ScreenThree = () => {
                       onChange={handleChange}
                     />
                     {formErrors.zipCode && (
-                      <span className="text-red-500">{formErrors.zipCode}</span>
+                      <span className="text-Red">{formErrors.zipCode}</span>
                     )}
                   </div>
                 </div>

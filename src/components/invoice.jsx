@@ -10,16 +10,9 @@ import { v4 as uuidv4 } from "uuid";
 const Invoice = () => {
   const uid = uuidv4();
   const list = CardArray;
-  const { id, ticketQuantity, totalAmount, fullName, address,city, country } =
+  const { id, ticketQuantity, totalAmount, fullName, address, city, country } =
     useParams();
   const selectedCard = CardArray.find((card) => String(card.id) === id);
-  // const generateInvoiceId = () => {
-  //   const randomNumber = Math.floor(Math.random() * 1000000);
-  //   const paddedNumber = String(randomNumber).padStart(6, "0");
-  //   return `YCCURW-${paddedNumber}`;
-  // // };
-  // const invoiceId = generateInvoiceId();
-
   const currentDate = new Date();
   const formattedDate = currentDate.toLocaleDateString("en-US", {
     year: "numeric",
@@ -59,7 +52,7 @@ const Invoice = () => {
             alt={selectedCard.title}
           />
           <div className="">
-            <h1 className="font-bold ">{selectedCard.title}</h1> <br />
+            <h1 className="font-bold">{selectedCard.title}</h1> <br />
             {Dateformatted}
             <div className="mt-5 flex gap-5">
               <Line15 className="mt-1" />
@@ -85,7 +78,7 @@ const Invoice = () => {
       </div>
       <div className="bg-shadow">
         <div className="p-14">
-          <h1 className="font-bold ">Invoice</h1>
+          <h1 className="font-bold text-2xl">Invoice</h1>
           <div className="mt-10">
             <div className="flex justify-between ">
               <h1>Invoice to {fullName}</h1>
@@ -95,7 +88,9 @@ const Invoice = () => {
               <h1>{address}</h1>
               <h1>Order Date :{formattedDate}</h1>
             </div>
-            <h1 className="mt-7">{city},{country}</h1>
+            <h1 className="mt-7">
+              {city},{country}
+            </h1>
           </div>
           <div className="mt-10 bg-shadow shadow-2xl p-5  border ">
             <table>
@@ -114,7 +109,7 @@ const Invoice = () => {
             <table className="">
               <tr className=" flex gap-40 mt-5 mr-10 ml-10">
                 <td>1</td>
-                <td>{selectedCard.title} </td>
+                <td className="">{selectedCard.title} </td>
                 <th>{selectedCard.buttonText}</th>
                 <th>x{ticketQuantity} </th>
                 <th>$500.00</th>

@@ -31,25 +31,25 @@ const Postpage = () => {
                                     />
 
                                 </div>
-                                <div className="mt-5">
+                                <div className="mt-5 ">
                                     <div className=" flex">
-                                        <label className="mt-2">Image: </label>
-                                        <input type="file" name="image" className=" rounded" ></input>
+                                        <label className="">Image: </label>
+                                        <input type="file" name="image" className=" rounded ml-[70px]" ></input>
                                     </div>
 
                                 </div>
 
-                                <div className="mt-5 flex justify-between">
+                                <div className="mt-5 flex ">
                                     <label className="mt-2">Title:</label>
                                     <input
                                         type="text"
                                         name="name"
-                                        className=" px-3 py-2  border border-gray-300 rounded"
+                                        className=" ml-20 p-2 border border-gray-300 rounded"
 
                                     />
 
                                 </div>
-                                <div className="mt-5 flex justify-between">
+                                <div className="mt-5 flex">
                                     <label className="mt-2 ">
                                         Date:
                                     </label>
@@ -57,16 +57,16 @@ const Postpage = () => {
                                         type="date"
                                         id="date"
                                         name="date"
-                                        className=" px-3 py-2  border border-gray-300 rounded"
+                                        className="ml-20 p-2 border border-gray-300 rounded"
 
                                     />
                                 </div>
-                                <div className="mt-5 flex justify-between">
+                                <div className="mt-5 flex ">
                                     <label className="mt-2">Location:</label>
                                     <input
                                         type="text"
                                         name="name"
-                                        className="p-2  border border-gray-300 rounded"
+                                        className="p-2  ml-12 border border-gray-300 rounded"
 
 
                                     />

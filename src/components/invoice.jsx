@@ -70,7 +70,7 @@ const Invoice = () => {
 
   return (
     <>
-      <div className="p-7 bg-Red text-white">
+      <div className="p-7 bg-Red text-white sticky top-0">
         <div className="flex gap-4 ml-10 ">
           <LogoIcon />
           <h1 className="text-2xl font-bold ">TickTicketing</h1>

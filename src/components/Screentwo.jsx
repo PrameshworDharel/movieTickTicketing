@@ -39,7 +39,9 @@ const ScreenTwo = () => {
   return (
     <>
       <div>
-        <Navbar />
+        <div className="sticky top-0 z-10">
+          <Navbar />
+        </div>
 
         {selectedCard && (
           <div className=" flex justify-between bg-primary text-white p-10 ">

@@ -48,7 +48,7 @@ const Homepage = () => {
     }
   };
   return (
-    <div className="bg-primary flex p-10 text-white gap-28 relative">
+    <div className="bg-primary flex p-10 text-white gap-28 relative ">
       {CardArray.map((event) => (
         <Link key={event.id} to={`/screen2/${event.id}`}>
           <div className="relative p-10">

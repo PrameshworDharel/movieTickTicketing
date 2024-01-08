@@ -4,7 +4,10 @@ import Homepage from "../components/homepage";
 const Screen1 = () => {
   return (
     <>
-      <Navbar />
+      <div className="sticky top-0 z-10">
+        <Navbar />
+      </div>
+
       <Homepage />
     </>
   );

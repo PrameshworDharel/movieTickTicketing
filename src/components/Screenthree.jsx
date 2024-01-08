@@ -77,7 +77,9 @@ const ScreenThree = () => {
   return (
     <>
       <div className="text-white">
-        <Navbar />
+        <div className="sticky top-0 z-10">
+          <Navbar />
+        </div>
         <Line44 className="bg-primary w-full h-full" />
         <div className=" bg-Dark  p-10 flex">
           <h5 className="ml-10">

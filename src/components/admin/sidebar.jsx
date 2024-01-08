@@ -13,10 +13,13 @@ const Sidebar = () => {
         <>
             <div className="bg-Dark text-white flex">
                 <div className=" h-screen p-10">
-                    <div className="flex gap-5 ">
-                        <LogoIcon className="animate-bounce mt-5" />
-                        <h1 className="text-2xl font-bold  ">TickTicketing</h1>
-                    </div>
+                    <Link to="/adminpage">
+                        <div className="flex gap-5 ">
+                            <LogoIcon className="animate-bounce mt-5" />
+                            <h1 className="text-2xl font-bold  ">TickTicketing</h1>
+                        </div>
+                    </Link>
+
 
                     <hr className="mt-5"></hr>
                     <div className="pt-10">
@@ -32,11 +35,14 @@ const Sidebar = () => {
                             />
                         </button>
                         {isDropdownOpen && (
-                            <div className="mt-2">
 
-                                <h1 className="ml-10  hover:text-shadow">
-                                    Add Post
-                                </h1>
+                            <div className="mt-2">
+                                <Link to="/addpost">
+                                    <button className="ml-10  hover:text-shadow">
+                                        Add Post
+                                    </button>
+                                </Link>
+
 
                             </div>
                         )}

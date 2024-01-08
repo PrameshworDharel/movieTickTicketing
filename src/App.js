@@ -6,12 +6,14 @@ import ScreenThree from "./components/Screenthree";
 import Invoice from "./components/invoice";
 import Movies from "./components/concert/Concert";
 import Adminpage from "./components/admin/";
+import Post from "./components/admin/post";
 
 function App() {
   return (
     <Router>
       <Routes>
         <Route path="/" element={<Screen1 />}></Route>
+
         <Route path="/screen2/:eventId" element={<ScreenTwo />} />
         <Route
           path="/chechout/:id/:ticketQuantity/:totalAmount"
@@ -24,6 +26,9 @@ function App() {
         <Route path="/concerts" element={<Movies />} />
 
         <Route path="/adminpage" element={<Adminpage />} />
+
+        <Route path="/addpost" element={<Post />} />
+        <Route path="/adminepage" element={<Adminpage />}></Route>
       </Routes>
     </Router>
   );

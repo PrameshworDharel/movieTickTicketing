@@ -1,6 +1,7 @@
 import React, { useState } from "react";
-import MyModal from "../Login/demo";
-
+import MyModal from "../../Login/demo";
+import { FaRegEdit } from "react-icons/fa";
+import { MdDelete } from "react-icons/md";
 const Postpage = () => {
     const [isAddModelOpen, setIsAddModelOpen] = useState(false);
     return (
@@ -9,7 +10,7 @@ const Postpage = () => {
                 <div className="flex justify-end mt-20">
 
                     <div>
-                        <button onClick={() => setIsAddModelOpen(!isAddModelOpen)} className="bg-Dark px-3 py-2 mr-20  text-white ">AddPost</button>
+                        <button onClick={() => setIsAddModelOpen(!isAddModelOpen)} className="bg-Dark px-3 py-2 mr-5  text-white ">AddPost</button>
                     </div>
                     <MyModal
                         isOpen={isAddModelOpen}
@@ -57,7 +58,7 @@ const Postpage = () => {
                                         type="date"
                                         id="date"
                                         name="date"
-                                        className="ml-20 p-2 border border-gray-300 rounded"
+                                        className="ml-[80px] px-7 p-2 border border-gray-300 rounded"
 
                                     />
                                 </div>
@@ -66,7 +67,7 @@ const Postpage = () => {
                                     <input
                                         type="text"
                                         name="name"
-                                        className="p-2  ml-12 border border-gray-300 rounded"
+                                        className="p-2  ml-14 border border-gray-300 rounded"
 
 
                                     />
@@ -84,10 +85,43 @@ const Postpage = () => {
 
                     </MyModal>
 
+                </div >
+                <div className="mt-10 flex justify-center">
+                    <table className="bg-shadow border ml-5 mr-5 w-full">
+                        <thead className="border ">
+                            <tr className="flex justify-between p-3 ">
+                                <th className="p-2 ">S.N</th>
+                                <th className="p-2">Categories</th>
+                                <th className="p-2">Image</th>
+                                <th className="p-2">Title</th>
+                                <th className="p-2">Date</th>
+                                <th className="p-2">Location</th>
+                                <th className="p-2">Status</th>
+                            </tr>
+                        </thead>
+                        <tbody>
 
+                            <tr className="flex justify-between p-4">
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td className="flex gap-5">
+                                    <button >
+                                        <FaRegEdit />
+                                    </button>
+                                    <button type="button" className="">
+                                        <MdDelete />
+                                    </button>
+                                </td>
+                            </tr>
+
+                        </tbody>
+                    </table>
                 </div>
-            </div >
-
+            </div>
         </>
     )
 }

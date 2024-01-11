@@ -1,12 +1,13 @@
-
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import MyModal from "../../Login/demo";
 import { FaRegEdit } from "react-icons/fa";
 import { MdDelete } from "react-icons/md";
 import { v4 as uuid } from 'uuid';
+import axios from "axios";
 const Postpage = () => {
     const [isAddModelOpen, setIsAddModelOpen] = useState(false);
     const [data, setData] = useState([]);
+    const [base64Image, setBase64Image] = useState("");
     const [formData, setFormData] = useState({
         id: uuid(),
         categories: "",
@@ -16,6 +17,20 @@ const Postpage = () => {
         location: "",
     });
     const [formErrors, setFormErrors] = useState({});
+    const [isEdit, setIsEdit] = useState(false);
+    useEffect(() => {
+        const fetchData = async () => {
+            try {
+                const response = await axios.get("http://localhost:5000/moviepost");
+                setData(response.data);
+            } catch (error) {
+                console.error("Error fetching data:", error);
+            }
+        };
+
+
+        fetchData();
+    }, []);
 
     const validateForm = () => {
         const errors = {};
@@ -23,7 +38,7 @@ const Postpage = () => {
         if (!formData.categories.trim()) {
             errors.categories = "Categories is required.";
         }
-        if (!formData.image.trim()) {
+        if (!base64Image) {
             errors.image = "Image is required.";
         }
         if (!formData.title.trim()) {
@@ -41,18 +56,52 @@ const Postpage = () => {
     };
 
     const handleChange = (e) => {
-        const { name, value } = e.target;
-        setFormData((prevData) => ({
-            ...prevData,
-            [name]: value,
-        }));
+        const { name, value, type } = e.target;
+    
+        if (type === "file") {
+            const file = e.target.files[0];
+            setFormData((prevData) => ({ ...prevData, [name]: file }));
+    
+            // Create a URL for the selected image file
+            const imageUrl = URL.createObjectURL(file);
+            setBase64Image(imageUrl);
+        } else {
+            setFormData((prevData) => ({ ...prevData, [name]: value }));
+        }
+    };
+    
+    const senddata = async () => {
+        try {
+            const response = await axios.post("http://localhost:5000/moviepost/", formData);
+            setData([...data, response.data]);
+        } catch (error) {
+            console.error("Error fetching data:", error);
+        }
     };
 
+    const updateDataOnServer = async () => {
+        try {
+            await axios.put(`http://localhost:5000/moviepost/${formData.id}`, formData);
+        } catch (error) {
+            console.error("Error updating data:", error);
+        }
+    };
     const handleAddSubmit = (e) => {
         e.preventDefault();
 
         if (validateForm()) {
-            setData((prevData) => [...prevData, formData]);
+            if (isEdit) {
+
+                const updatedData = data.map((item) =>
+                    item.id === formData.id ? formData : item
+                );
+                setData(updatedData);
+                setIsEdit(false);
+            } else {
+
+                setData((prevData) => [...prevData, formData]);
+            }
+
             setIsAddModelOpen(false);
             setFormData({
                 id: uuid(),
@@ -63,6 +112,28 @@ const Postpage = () => {
                 location: "",
             });
         }
+    };
+
+
+
+    const handleEditClick = (id) => {
+        const selectedData = data.find((item) => item.id === id);
+        setFormData({
+            id: selectedData.id,
+            categories: selectedData.categories,
+            image: "",
+            title: selectedData.title,
+            date: selectedData.date,
+            location: selectedData.location
+        });
+
+        setIsAddModelOpen(true);
+        setIsEdit(true);
+    };
+
+    const handleDelete = (id) => {
+        const updatedData = data.filter((item) => item.id !== id);
+        setData(updatedData);
     };
 
     return (
@@ -78,7 +149,7 @@ const Postpage = () => {
                     >
                         <form className="bg-shadow p-7" onSubmit={handleAddSubmit}>
                             <div className="flex justify-center mb-5">
-                                <h1 className="text-xl font-bold">Add Movie</h1>
+                                <h1 className="text-xl font-bold">{isEdit ? "Update Movie" : "Add Movie"}</h1>
                             </div>
                             <div className="mb-5">
                                 <label className="block">Categories:</label>
@@ -99,11 +170,18 @@ const Postpage = () => {
                                     type="file"
                                     name="image"
                                     className="w-full p-2 border border-gray-300 rounded"
-                                    value={formData.image}
                                     onChange={handleChange}
                                 />
                                 {formErrors.image && (
                                     <span className="text-Red mt-2">{formErrors.image}</span>
+                                )}
+
+                                {base64Image && (
+                                    <img
+                                        src={base64Image}
+                                        alt="Preview"
+                                        className="mt-2 w-full max-h-40 object-cover"
+                                    />
                                 )}
                             </div>
                             <div className="mb-5">
@@ -146,7 +224,7 @@ const Postpage = () => {
                                 )}
                             </div>
                             <div className="flex justify-center mt-10">
-                                <button className="bg-Dark px-3 py-2 ml-5 text-white" type="submit">Add</button>
+                                <button className="bg-Dark px-3 py-2 ml-5 text-white" type="submit"> {isEdit ? "Update" : "Add"}</button>
                                 <button className="bg-Dark px-3 py-2 ml-5 text-white" type="button" onClick={() => setIsAddModelOpen(false)}>Cancel</button>
                             </div>
                         </form>
@@ -170,15 +248,23 @@ const Postpage = () => {
                                 <tr key={val.id} className="flex justify-between p-4">
                                     <td>{val.id}</td>
                                     <td>{val.categories}</td>
-                                    <td>{val.image}</td>
+                                    <td>
+                {val.image && (
+                    <img
+                        src={typeof val.image === "string" ? val.image : URL.createObjectURL(val.image)}
+                        alt="img"
+                        style={{ width: "50px", height: "50px" }}
+                    />
+                )}
+            </td>
                                     <td>{val.title}</td>
                                     <td>{val.date}</td>
                                     <td>{val.location}</td>
                                     <td className="flex gap-5">
-                                        <button>
+                                        <button onClick={() => handleEditClick(val.id)} >
                                             <FaRegEdit />
                                         </button>
-                                        <button type="button" className="">
+                                        <button type="button" onClick={() => handleDelete(val.id)} className="">
                                             <MdDelete />
                                         </button>
                                     </td>

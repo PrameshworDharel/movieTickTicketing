@@ -44,19 +44,19 @@ const ScreenTwo = () => {
         </div>
 
         {selectedCard && (
-          <div className=" flex justify-between bg-primary text-white p-10 ">
-            <div className="relative mt-10">
+          <div className=" flex justify-between bg-primary text-white p-10">
+            <div className="relative mt-10 ">
               <img src={selectedCard.image} alt={selectedCard.title} />
               <h2 className="mt-3 overflow-hidden overflow-ellipsis max-w-[250px]">
                 {selectedCard.title}
               </h2>
-              <div className="flex gap-2 mt-2">
+              <div className="flex gap-2 mt-2 ">
                 <small> {selectedCard.date}</small>
                 <OvalIcon className="mt-2" />
                 <small className="mb-40"> {selectedCard.location}</small>
               </div>
             </div>
-            <div className=" rounded-md p-7 bg-Dark shadow-xl mt-10">
+            <div className=" rounded-md p-7 bg-Dark shadow-xl mt-10  mb-40 ">
               <h1 className="font-bold text-xl">Event Details</h1>
               <Line className="bg-Dark mt-4 w-full" />
               <div className="mt-10 flex gap-5">

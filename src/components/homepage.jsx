@@ -51,7 +51,7 @@ const Homepage = () => {
     <div className="bg-primary flex p-10 text-white gap-28 relative ">
       {CardArray.map((event) => (
         <Link key={event.id} to={`/screen2/${event.id}`}>
-          <div className="relative p-10">
+          <div className="relative p-10  mb-28">
             <img src={event.image} alt={event.title} />
             <button className="absolute top-14 right-16 bg-Light text-white py-1 px-3 rounded shadow-lg">
               {event.buttonText}

@@ -7,7 +7,8 @@ import Invoice from "./components/invoice";
 import Movies from "./components/concert/Concert";
 import Adminpage from "./components/admin/";
 import Post from "./components/admin/post";
-
+import Order from "./components/admin/order";
+import User from "./components/admin/user";
 function App() {
   return (
     <Router>
@@ -29,6 +30,8 @@ function App() {
 
         <Route path="/addpost" element={<Post />} />
         <Route path="/adminepage" element={<Adminpage />}></Route>
+        <Route path="/orderpage" element={<Order />}></Route>
+        <Route path="/userpage" element={<User />}></Route>
       </Routes>
     </Router>
   );

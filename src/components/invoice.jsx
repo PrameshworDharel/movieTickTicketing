@@ -118,7 +118,7 @@ const Invoice = () => {
                   {(parseFloat(totalAmount) + totalAmount * vatRate).toFixed(2)}
                 </th>
               </tr>
-              <hr className=""></hr>
+              <hr className="w-[1785px] mt-5"></hr>
               <h1 className="flex justify-end font-bold text-2xl mb-20 mr-10 mt-5">
                 Invoice Total :
                 {(parseFloat(totalAmount) + totalAmount * vatRate).toFixed(2)}

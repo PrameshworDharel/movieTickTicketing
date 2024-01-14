@@ -18,19 +18,7 @@ const Postpage = () => {
     });
     const [formErrors, setFormErrors] = useState({});
     const [isEdit, setIsEdit] = useState(false);
-    useEffect(() => {
-        const fetchData = async () => {
-            try {
-                const response = await axios.get("http://localhost:5000/moviepost");
-                setData(response.data);
-            } catch (error) {
-                console.error("Error fetching data:", error);
-            }
-        };
 
-
-        fetchData();
-    }, []);
 
     const validateForm = () => {
         const errors = {};
@@ -57,11 +45,11 @@ const Postpage = () => {
 
     const handleChange = (e) => {
         const { name, value, type } = e.target;
-    
+
         if (type === "file") {
             const file = e.target.files[0];
             setFormData((prevData) => ({ ...prevData, [name]: file }));
-    
+
             // Create a URL for the selected image file
             const imageUrl = URL.createObjectURL(file);
             setBase64Image(imageUrl);
@@ -69,23 +57,10 @@ const Postpage = () => {
             setFormData((prevData) => ({ ...prevData, [name]: value }));
         }
     };
-    
-    const senddata = async () => {
-        try {
-            const response = await axios.post("http://localhost:5000/moviepost/", formData);
-            setData([...data, response.data]);
-        } catch (error) {
-            console.error("Error fetching data:", error);
-        }
-    };
 
-    const updateDataOnServer = async () => {
-        try {
-            await axios.put(`http://localhost:5000/moviepost/${formData.id}`, formData);
-        } catch (error) {
-            console.error("Error updating data:", error);
-        }
-    };
+
+
+
     const handleAddSubmit = (e) => {
         e.preventDefault();
 
@@ -121,7 +96,7 @@ const Postpage = () => {
         setFormData({
             id: selectedData.id,
             categories: selectedData.categories,
-            image: "",
+            image: selectedData.image,
             title: selectedData.title,
             date: selectedData.date,
             location: selectedData.location
@@ -249,14 +224,14 @@ const Postpage = () => {
                                     <td>{val.id}</td>
                                     <td>{val.categories}</td>
                                     <td>
-                {val.image && (
-                    <img
-                        src={typeof val.image === "string" ? val.image : URL.createObjectURL(val.image)}
-                        alt="img"
-                        style={{ width: "50px", height: "50px" }}
-                    />
-                )}
-            </td>
+                                        {val.image && (
+                                            <img
+                                                src={typeof val.image === "string" ? val.image : URL.createObjectURL(val.image)}
+                                                alt="img"
+                                                style={{ width: "50px", height: "50px" }}
+                                            />
+                                        )}
+                                    </td>
                                     <td>{val.title}</td>
                                     <td>{val.date}</td>
                                     <td>{val.location}</td>

@@ -97,7 +97,7 @@ const ScreenThree = () => {
                 <label htmlFor="fullName">Full Name</label>
                 <div>
                   <input
-                    className="w-full mt-2 h-10  bg-primary shadow-2xl rounded-md "
+                    className="w-full mt-2 h-10  bg-primary shadow-2xl rounded-md p-2"
                     type="text"
                     id="fullName"
                     name="fullName"
@@ -114,33 +114,35 @@ const ScreenThree = () => {
                   <label htmlFor="email">Email*</label>
                   <div>
                     <input
-                      className="w-[350px] mt-2 h-10  bg-primary shadow-2xl rounded-md"
+                      className="w-[350px] mt-2 h-10  bg-primary shadow-2xl rounded-md p-2"
                       type="email"
                       id="email"
                       name="email"
                       value={formData.email}
                       onChange={handleChange}
                     />
-                    {formErrors.email && (
-                      <span className="text-Red">{formErrors.email}</span>
-                    )}
+
                   </div>
+                  {formErrors.email && (
+                    <span className="text-Red">{formErrors.email}</span>
+                  )}
                 </div>
                 <div className="mt-5 ml-20">
                   <label htmlFor="address">Address*</label>
                   <div>
                     <input
-                      className="w-[350px] mt-2 h-10   bg-primary shadow-2xl rounded-md"
+                      className="w-[350px] mt-2 h-10   bg-primary shadow-2xl rounded-md p-2"
                       type="text"
                       id="address"
                       name="address"
                       value={formData.address}
                       onChange={handleChange}
                     />
-                    {formErrors.address && (
-                      <span className="text-Red">{formErrors.address}</span>
-                    )}
+
                   </div>
+                  {formErrors.address && (
+                    <span className="text-Red">{formErrors.address}</span>
+                  )}
                 </div>
               </div>
               <div className="flex ">
@@ -148,33 +150,35 @@ const ScreenThree = () => {
                   <label htmlFor="country">Country*</label>
                   <div>
                     <input
-                      className="w-[350px] mt-2 h-10  bg-primary shadow-2xl rounded-md"
+                      className="w-[350px] mt-2 h-10  bg-primary shadow-2xl rounded-md p-2"
                       type="text"
                       id="country"
                       name="country"
                       value={formData.country}
                       onChange={handleChange}
                     />
-                    {formErrors.country && (
-                      <span className="text-Red">{formErrors.country}</span>
-                    )}
+
                   </div>
+                  {formErrors.country && (
+                    <span className="text-Red">{formErrors.country}</span>
+                  )}
                 </div>
                 <div className=" mt-5 ml-20">
                   <label htmlFor="state">State</label>
                   <div>
                     <input
-                      className="w-[350px] mt-2 h-10  bg-primary shadow-2xl rounded-md"
+                      className="w-[350px] mt-2 h-10  bg-primary shadow-2xl rounded-md p-2"
                       type="text"
                       id="state"
                       name="state"
                       value={formData.state}
                       onChange={handleChange}
                     />
-                    {formErrors.state && (
-                      <span className="text-Red">{formErrors.state}</span>
-                    )}
+
                   </div>
+                  {formErrors.state && (
+                    <span className="text-Red">{formErrors.state}</span>
+                  )}
                 </div>
               </div>
               <div className="flex">
@@ -182,33 +186,35 @@ const ScreenThree = () => {
                   <label htmlFor="city">City</label>
                   <div>
                     <input
-                      className="w-[350px] mt-2 h-10  bg-primary shadow-2xl rounded-md"
+                      className="w-[350px] mt-2 h-10  bg-primary shadow-2xl rounded-md p-2"
                       type="text"
                       id="city"
                       name="city"
                       value={formData.city}
                       onChange={handleChange}
                     />
-                    {formErrors.city && (
-                      <span className="text-Red">{formErrors.city}</span>
-                    )}
+
                   </div>
+                  {formErrors.city && (
+                    <span className="text-Red">{formErrors.city}</span>
+                  )}
                 </div>
                 <div className="mt-5 ml-20">
                   <label htmlFor="zipCode">Zip/Post Code*</label>
                   <div>
                     <input
-                      className="w-[350px] mt-2 h-10  bg-primary shadow-2xl rounded-md"
+                      className="w-[350px] mt-2 h-10  bg-primary shadow-2xl rounded-md p-2"
                       type="text"
                       id="zipCode"
                       name="zipCode"
                       value={formData.zipCode}
                       onChange={handleChange}
                     />
-                    {formErrors.zipCode && (
-                      <span className="text-Red">{formErrors.zipCode}</span>
-                    )}
+
                   </div>
+                  {formErrors.zipCode && (
+                    <span className="text-Red">{formErrors.zipCode}</span>
+                  )}
                 </div>
               </div>
             </div>

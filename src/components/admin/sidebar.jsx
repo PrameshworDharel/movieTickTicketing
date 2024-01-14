@@ -47,13 +47,22 @@ const Sidebar = () => {
                             </div>
                         )}
                     </div>
-                    <div className="mt-5">
-                        <h1
-                            className="flex px-3 py-2 rounded-sm "
+                    <Link to="/orderpage">
+                        <div className="mt-5">
+                            <h1
+                                className="flex px-3 py-2 rounded-sm "
 
-                        >User</h1>
-                    </div>
+                            >Order List</h1>
+                        </div>
+                    </Link>
+                    <Link to="/userpage">
+                        <div className="mt-5">
+                            <h1
+                                className="flex px-3 py-2 rounded-sm "
 
+                            >User List</h1>
+                        </div>
+                    </Link>
 
                 </div>
 

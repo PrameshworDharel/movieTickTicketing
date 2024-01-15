@@ -42,7 +42,7 @@ const LoginPage = () => {
                                 />
                             </label>
                             <br />
-                            <Link to="adminpage">
+                            <Link to="/adminpage">
 
                                 <div className="flex justify-center">
                                     <button type="submit" className="mt-5 shadow-lg px-3 py-2 bg-Light">Login</button>

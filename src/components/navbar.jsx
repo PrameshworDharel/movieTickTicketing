@@ -78,15 +78,23 @@ const Navbar = () => {
                   </Link>
 
 
+
                 </form>
+                <div className="flex gap-5 mt-3 ml-10">
+                  <h1>
+                    Don't have an account?
+                  </h1>
+                  <button onClick={() => {
+                    setIsRegister(!isRegister);
+                    setIsAddModelOpen(false);
+                  }} className="text-Dark">Register</button>
+                </div>
               </div>
-
-
             </MyModal>
 
-            <div>
+            {/* <div>
               <button onClick={() => setIsRegister(!isRegister)} className="bg-Brand px-2 py-1">Register</button>
-            </div>
+            </div> */}
             <MyModal isOpen={isRegister}
               closeModal={() => setIsRegister(false)}
 
@@ -157,6 +165,15 @@ const Navbar = () => {
                     </div>
 
                   </form>
+                  <div className="flex gap-5 mt-3 ml-10">
+                    <h1>
+                      Already have an account?
+                    </h1>
+                    <button onClick={() => {
+                      setIsAddModelOpen(!isAddModelOpen);
+                      setIsRegister(false);
+                    }} className="text-Dark">Login</button>
+                  </div>
                 </div>
               </div>
 

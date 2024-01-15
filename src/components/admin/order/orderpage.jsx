@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import { MdDelete } from "react-icons/md";
 const Orderpage = () => {
     return (
@@ -10,11 +11,8 @@ const Orderpage = () => {
                             <th className="p-2">S.N</th>
                             <th className="p-2">FullName</th>
                             <th className="p-2">Email</th>
-                            <th className="p-2">Address</th>
-                            <th className="p-2">Country</th>
-                            <th className="p-2">State</th>
-                            <th className="p-2">City</th>
-                            <th className="p-2">Zip/Post Code</th>
+
+                            <th>Tickect Number</th>
                             <th className="p-2">Total</th>
                             <th className="p-2">Status</th>
                         </tr>
@@ -27,15 +25,17 @@ const Orderpage = () => {
                             <td></td>
                             <td></td>
                             <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td className="gap-5">
+                            <td className="gap-5 flex">
 
                                 <button type="button" className="">
                                     <MdDelete />
                                 </button>
+                                <Link to="/detailspage">
+                                    <button type="button" className="bg-Dark text-white p-2 rounded-md">
+                                        Details
+                                    </button>
+                                </Link>
+
                             </td>
                         </tr>
 

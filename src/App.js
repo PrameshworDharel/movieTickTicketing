@@ -9,6 +9,7 @@ import Adminpage from "./components/admin/";
 import Post from "./components/admin/post";
 import Order from "./components/admin/order";
 import User from "./components/admin/user";
+import Details from "./components/admin/order/details";
 function App() {
   return (
     <Router>
@@ -32,6 +33,7 @@ function App() {
         <Route path="/adminepage" element={<Adminpage />}></Route>
         <Route path="/orderpage" element={<Order />}></Route>
         <Route path="/userpage" element={<User />}></Route>
+        <Route path="/detailspage" element={<Details />}></Route>
       </Routes>
     </Router>
   );

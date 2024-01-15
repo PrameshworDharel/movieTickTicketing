@@ -21,8 +21,7 @@ const Registerpage = () => {
                                 <input
                                     type="text"
                                     name="firstName"
-                                    // value={formData.firstName}
-                                    // onChange={handleChange}
+
                                     required
                                     className="bg-Dark shadow-md border px-3 py-1 ml-10"
                                 />
@@ -33,8 +32,7 @@ const Registerpage = () => {
                                 <input
                                     type="text"
                                     name="firstName"
-                                    // value={formData.firstName}
-                                    // onChange={handleChange}
+
                                     required
                                     className="bg-Dark shadow-md border px-3 py-1 ml-10 mt-5"
                                 />
@@ -45,8 +43,7 @@ const Registerpage = () => {
                                 <input
                                     type="email"
                                     name="email"
-                                    // value={formData.firstName}
-                                    // onChange={handleChange}
+
                                     required
                                     className="bg-Dark shadow-md border px-3 py-1 ml-14 mt-5"
                                 />
@@ -57,12 +54,12 @@ const Registerpage = () => {
                                 <input
                                     type="password"
                                     name="password"
-                                    // value={formData.firstName}
-                                    // onChange={handleChange}
-                                    required
+
+                                    requireds
                                     className="bg-Dark shadow-md border px-3 py-1 ml-10 mt-5"
                                 />
                             </label>
+
                             <br />
                             <div className="flex justify-center">
                                 <button type="submit" className="mt-5 shadow-lg px-3 py-2 bg-Light">Register</button>

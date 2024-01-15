@@ -1,10 +1,18 @@
 import React, { useState } from "react"
 import { Link } from "react-router-dom";
-import MyModal from "./Login/demo";
+import MyModal from "./Popupmodel/demo";
 import { ReactComponent as LogoIcon } from "../assets/svg/Vector.svg";
-const Navbar = () => {
+import { IoMdClose } from "react-icons/io";
+const Navbar = ({ showLoginButton = true }) => {
   const [isAddModelOpen, setIsAddModelOpen] = useState(false);
   const [isRegister, setIsRegister] = useState(false);
+  const handleLoginCancel = () => {
+    setIsAddModelOpen(false);
+  };
+
+  const handleRegisterCancel = () => {
+    setIsRegister(false);
+  };
   return (
     <>
       <div className="p-10 bg-Dark text-white  ">
@@ -27,16 +35,29 @@ const Navbar = () => {
             </div>
           </div>
           <div className="flex gap-10">
-            <div>
-              <button onClick={() => setIsAddModelOpen(!isAddModelOpen)} className="bg-Brand px-2 py-1">Login</button>
-            </div>
+            {showLoginButton && (
+              <div>
+                <button
+                  onClick={() => setIsAddModelOpen(!isAddModelOpen)}
+                  className="bg-Brand px-2 py-1"
+                >
+                  Login
+                </button>
+              </div>
+            )}
             <MyModal
               isOpen={isAddModelOpen}
               closeModal={() => setIsAddModelOpen(false)}
             >
-              <div className="flex gap-5 ">
-                <LogoIcon className="animate-bounce mt-5" />
-                <h1 className="text-2xl font-bold ">TickTicketing</h1>
+              <div className="flex justify-between">
+                <div className="flex gap-5">
+                  <LogoIcon className="animate-bounce mt-5" />
+                  <h1 className="text-2xl font-bold mt-3 ">TickTicketing</h1>
+                </div>
+                <button onClick={handleLoginCancel} className="">
+                  <IoMdClose className="w-10 h-10" />
+                </button>
+
 
               </div>
               <hr className="mt-5"></hr>
@@ -92,19 +113,22 @@ const Navbar = () => {
               </div>
             </MyModal>
 
-            {/* <div>
-              <button onClick={() => setIsRegister(!isRegister)} className="bg-Brand px-2 py-1">Register</button>
-            </div> */}
+
             <MyModal isOpen={isRegister}
               closeModal={() => setIsRegister(false)}
 
             >
 
               <div className="">
-                <div className="flex gap-5 ">
-                  <LogoIcon className="animate-bounce mt-5" />
-                  <h1 className="text-2xl font-bold  ">TickTicketing</h1>
+                <div className="flex  justify-between  ">
+                  <div className=" flex gap-5">
+                    <LogoIcon className="animate-bounce mt-5" />
+                    <h1 className="text-2xl font-bold mt-2 ">TickTicketing</h1>
+                  </div>
 
+                  <button onClick={handleRegisterCancel} className="">
+                    <IoMdClose className="w-10 h-10" />
+                  </button>
                 </div>
                 <hr className="mt-5"></hr>
                 <div>

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import MyModal from "../../Login/demo";
+import MyModal from "../../Popupmodel/demo";
 import { FaRegEdit } from "react-icons/fa";
 import { MdDelete } from "react-icons/md";
 import { v4 as uuid } from 'uuid';
@@ -18,7 +18,12 @@ const Postpage = () => {
     });
     const [formErrors, setFormErrors] = useState({});
     const [isEdit, setIsEdit] = useState(false);
+    useEffect(() => {
 
+        axios.get("http://localhost:5000/moviepost")
+            .then(response => setData(response.data))
+            .catch(error => console.error("Error fetching data:", error));
+    }, []);
 
     const validateForm = () => {
         const errors = {};
@@ -50,7 +55,6 @@ const Postpage = () => {
             const file = e.target.files[0];
             setFormData((prevData) => ({ ...prevData, [name]: file }));
 
-            // Create a URL for the selected image file
             const imageUrl = URL.createObjectURL(file);
             setBase64Image(imageUrl);
         } else {
@@ -66,15 +70,20 @@ const Postpage = () => {
 
         if (validateForm()) {
             if (isEdit) {
+                // Update existing data on the server
+                axios.put(`http://localhost:5000/moviepost/${formData.id}`, formData)
+                    .then(response => {
+                        const updatedData = data.map(item => (item.id === formData.id ? response.data : item));
+                        setData(updatedData);
+                    })
+                    .catch(error => console.error("Error updating data:", error));
 
-                const updatedData = data.map((item) =>
-                    item.id === formData.id ? formData : item
-                );
-                setData(updatedData);
                 setIsEdit(false);
             } else {
-
-                setData((prevData) => [...prevData, formData]);
+                // Add new data to the server
+                axios.post("http://localhost:5000/moviepost", formData)
+                    .then(response => setData(prevData => [...prevData, response.data]))
+                    .catch(error => console.error("Error adding data:", error));
             }
 
             setIsAddModelOpen(false);
@@ -107,10 +116,14 @@ const Postpage = () => {
     };
 
     const handleDelete = (id) => {
-        const updatedData = data.filter((item) => item.id !== id);
-        setData(updatedData);
+        // Delete data on the server
+        axios.delete(`http://localhost:5000/moviepost/${id}`)
+            .then(() => {
+                const updatedData = data.filter(item => item.id !== id);
+                setData(updatedData);
+            })
+            .catch(error => console.error("Error deleting data:", error));
     };
-
     return (
         <>
             <div className="text-Light">
@@ -223,7 +236,8 @@ const Postpage = () => {
                                 <tr key={val.id} className="flex justify-between p-4">
                                     <td>{val.id}</td>
                                     <td>{val.categories}</td>
-                                    <td>
+                                    <td></td>
+                                    {/* <td>
                                         {val.image && (
                                             <img
                                                 src={typeof val.image === "string" ? val.image : URL.createObjectURL(val.image)}
@@ -231,7 +245,7 @@ const Postpage = () => {
                                                 style={{ width: "50px", height: "50px" }}
                                             />
                                         )}
-                                    </td>
+                                    </td> */}
                                     <td>{val.title}</td>
                                     <td>{val.date}</td>
                                     <td>{val.location}</td>

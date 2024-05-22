@@ -93,36 +93,42 @@ const Invoice = () => {
             </h1>
           </div>
           <div className="mt-10 bg-shadow shadow-2xl p-5  border ">
-            <table>
-              <tr className=" flex gap-40 mr-10 ml-10">
+            <table className="w-full">
+              <tr className="flex ">
                 <th>#</th>
-                <th>Event Detail</th>
-                <th>Event Type</th>
-                <th>Ticket</th>
-                <th>Unit Price</th>
-                <th>Discount</th>
-                <th>Total</th>
+                <th className="ml-20">Event Detail</th>
+                <th className="ml-48">Event Type</th>
+                <th className="ml-32">Ticket</th>
+                <th className="ml-32">Unit Price</th>
+                <th className="ml-32">Discount</th>
+                <th className="ml-32">Total</th>
               </tr>
             </table>
           </div>
-          <div className=" bg-white  border">
-            <table className="">
-              <tr className=" flex gap-40 mt-5 mr-10 ml-10">
+          <div className="bg-white border">
+            <table className="w-full">
+              <tr className="flex p-5">
                 <td>1</td>
-                <td className="">{selectedCard.title} </td>
-                <th>{selectedCard.buttonText}</th>
-                <th>x{ticketQuantity} </th>
-                <th>$500.00</th>
-                <th>$0.00</th>
-                <th>
+                <td className="ml-10">{selectedCard.title}</td>
+                <th className="ml-10">{selectedCard.buttonText}</th>
+                <th className="ml-40">x{ticketQuantity}</th>
+                <th className="ml-32">$500.00</th>
+                <th className="ml-32">$0.00</th>
+                <th className="ml-32">
                   {(parseFloat(totalAmount) + totalAmount * vatRate).toFixed(2)}
                 </th>
               </tr>
-              <hr className="w-[1785px] mt-5"></hr>
-              <h1 className="flex justify-end font-bold text-2xl mb-20 mr-10 mt-5">
-                Invoice Total :
-                {(parseFloat(totalAmount) + totalAmount * vatRate).toFixed(2)}
-              </h1>
+              <tr>
+                <td colSpan="7">
+                  <hr />
+                </td>
+              </tr>
+              <tr>
+                <td colSpan="7" className="flex justify-end font-bold text-2xl p-5 ">
+                  Invoice Total:{" "}
+                  {(parseFloat(totalAmount) + totalAmount * vatRate).toFixed(2)}
+                </td>
+              </tr>
             </table>
           </div>
           {TicketSections}

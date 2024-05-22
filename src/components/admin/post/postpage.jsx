@@ -47,24 +47,30 @@ const Postpage = () => {
         setFormErrors(errors);
         return Object.keys(errors).length === 0;
     };
+    const convertToBase64 = (file) => {
+        const reader = new FileReader();
+        reader.readAsDataURL(file);
+        reader.onload = () => {
+            // console.log("called: ", reader);
+            setBase64Image(reader.result);
+        };
+    };
+    // console.log(formData)
 
     const handleChange = (e) => {
         const { name, value, type } = e.target;
 
         if (type === "file") {
             const file = e.target.files[0];
-            setFormData((prevData) => ({ ...prevData, [name]: file }));
+            convertToBase64(e.target.files[0]);
 
-            const imageUrl = URL.createObjectURL(file);
-            setBase64Image(imageUrl);
         } else {
             setFormData((prevData) => ({ ...prevData, [name]: value }));
         }
+
     };
 
-
-
-
+    // console.log(formData);
     const handleAddSubmit = (e) => {
         e.preventDefault();
 
@@ -84,21 +90,20 @@ const Postpage = () => {
                 axios.post("http://localhost:5000/moviepost", formData)
                     .then(response => setData(prevData => [...prevData, response.data]))
                     .catch(error => console.error("Error adding data:", error));
+                // console.log(formData);
             }
-
             setIsAddModelOpen(false);
             setFormData({
                 id: uuid(),
                 categories: "",
-                image: "",
+                image: base64Image,
                 title: "",
                 date: "",
                 location: "",
             });
+
         }
     };
-
-
 
     const handleEditClick = (id) => {
         const selectedData = data.find((item) => item.id === id);
@@ -108,7 +113,7 @@ const Postpage = () => {
             image: selectedData.image,
             title: selectedData.title,
             date: selectedData.date,
-            location: selectedData.location
+            location: selectedData.location,
         });
 
         setIsAddModelOpen(true);
@@ -135,7 +140,7 @@ const Postpage = () => {
                         isOpen={isAddModelOpen}
                         closeModal={() => setIsAddModelOpen(false)}
                     >
-                        <form className="bg-shadow p-7" onSubmit={handleAddSubmit}>
+                        <form className="bg-shadow p-7" onSubmit={handleAddSubmit} >
                             <div className="flex justify-center mb-5">
                                 <h1 className="text-xl font-bold">{isEdit ? "Update Movie" : "Add Movie"}</h1>
                             </div>
@@ -232,20 +237,20 @@ const Postpage = () => {
                             </tr>
                         </thead>
                         <tbody>
+
                             {data?.map((val) => (
                                 <tr key={val.id} className="flex justify-between p-4">
                                     <td>{val.id}</td>
                                     <td>{val.categories}</td>
-                                    <td></td>
-                                    {/* <td>
-                                        {val.image && (
-                                            <img
-                                                src={typeof val.image === "string" ? val.image : URL.createObjectURL(val.image)}
-                                                alt="img"
-                                                style={{ width: "50px", height: "50px" }}
-                                            />
-                                        )}
-                                    </td> */}
+                                    <td>
+
+                                        <img
+                                            src={val.image}
+                                            alt="img"
+                                            style={{ width: "50px", height: "50px" }}
+                                        />
+
+                                    </td>
                                     <td>{val.title}</td>
                                     <td>{val.date}</td>
                                     <td>{val.location}</td>

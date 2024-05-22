@@ -1,6 +1,7 @@
 import React from "react";
 import { MdDelete } from "react-icons/md";
 const Userpage = () => {
+    
     return (
         <>
             <div className="mt-10 flex justify-center">
@@ -18,7 +19,7 @@ const Userpage = () => {
                     <tbody>
 
                         <tr className="flex justify-between p-4">
-                            <td>1</td>
+                            <td></td>
                             <td></td>
                             <td></td>
                             <td></td>
